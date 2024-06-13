@@ -4,12 +4,15 @@ if(location.hostname === "felttable.com"){
   observer.observe(document.body, { childList: true, subtree: true });
 
   function imgFeltTableUpdater() {
-    const cardImgs = document.querySelectorAll('.fabCardUpper');
+    const cardImgs = document.querySelectorAll("[class*='cardImages']");
     cardImgs.forEach((cardImg) => {
-      let cardImgClass = cardImg.classList[2];
-      let cardImgValue = cardImgClass.split('_')[1];
-      stylesheet.insertRule("."+cardImgClass+" { background-image: url(https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/FR_"+cardImgValue+".webp) !important;}")
-    });
+      cardImg.classList.forEach((classC) => {
+        if(classC.includes('cardImages')) {
+          let cardImgValue = classC.split('_')[1];
+          stylesheet.insertRule("."+classC+" { background-image: url(https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/FR_"+cardImgValue+".webp) !important;}")
+        }
+      });
+     });
   }
 }else if(location.hostname === "talishar.net"){
 
