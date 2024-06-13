@@ -8,10 +8,10 @@ Merci à mes compagnons Lucien, Kevin et Cesar qui se reconnaitront.
 
 ## Installation de l'extension
 
-1- Aller sur [chrome://extensions/](chrome://extensions/)
-2- Activer le mode développeur
-3- Charger l’extension non empaquetée
-4- Fin vous pouvez jouer
+ 1. Aller sur [chrome://extensions/](chrome://extensions/) 
+ 2. Activer le mode développeur
+ 3. Charger l’extension non empaquetée 
+ 4. Fin, vous pouvez jouer
 
 Certaines cartes ne disposent pas de la version française et resterons donc en Anglais.
 
