@@ -9,7 +9,9 @@ if(location.hostname === "felttable.com"){
       cardImg.classList.forEach((classC) => {
         if(classC.includes('cardImages')) {
           let cardImgValue = classC.split('_')[1];
-          stylesheet.insertRule("."+classC+" { background-image: url(https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/FR_"+cardImgValue+".webp) !important;}")
+          fetch('https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/'+cardImgValue+'.webp', {mode: 'no-cors'}).then(() => {
+            stylesheet.insertRule("."+classC+" { background-image: url(https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/FR_"+cardImgValue+".webp) !important;}");
+          });
         }
       });
      });
