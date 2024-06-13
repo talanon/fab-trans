@@ -1,7 +1,7 @@
 {
-  "name": "FaB - FeltTable FR Traduction",
-  "description": "Permet de traduire les cartes FeltTable en FR",
-  "version": "1.1",
+  "name": "FaB - FR Traduction",
+  "description": "Permet de traduire les cartes FeltTable/Talishar en FR",
+  "version": "1.2",
   "manifest_version": 3,
   "action": {
     "default_icon": "logo-ext.png"
