@@ -3,18 +3,31 @@ if(location.hostname === "felttable.com"){
   const observer = new MutationObserver(() => imgFeltTableUpdater());
   observer.observe(document.body, { childList: true, subtree: true });
 
+// check here https://stackoverflow.com/a/52702882/14366026
+
   function imgFeltTableUpdater() {
     const cardImgs = document.querySelectorAll("[class*='cardImages']");
     cardImgs.forEach((cardImg) => {
-      cardImg.classList.forEach((classC) => {
+      cardImg.classList.forEach(async (classC) => {
         if(classC.includes('cardImages')) {
           let cardImgValue = classC.split('_')[1];
-          fetch('https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/'+cardImgValue+'.webp', {mode: 'no-cors'}).then(() => {
-            stylesheet.insertRule("."+classC+" { background-image: url(https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/FR_"+cardImgValue+".webp) !important;}");
-          });
-        }
-      });
+        try {
+ let toto = await fetch('https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/'+cardImgValue+'.webp', {mode: 'cors'}).then((e) => {
+              if(e.status !== 0) {
+                stylesheet.insertRule("."+classC+" { background-image: url(https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/FR_"+cardImgValue+".webp) !important;}");
+              }
+              console.log(e);
+             });
+          
+} catch (error) {
+  console.error(error);
+  // Expected output: ReferenceError: nonExistentFunction is not defined
+  // (Note: the exact output may be browser-dependent)
+}
+
+      };
      });
+      });
   }
 }else if(location.hostname === "talishar.net"){
 
@@ -54,4 +67,3 @@ if(location.hostname === "felttable.com"){
   },500);
 
 }
-
