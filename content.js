@@ -12,8 +12,8 @@ if (location.hostname === 'felttable.com') {
     cardImgs.forEach((cardImg) => {
       if(!cardImg.dataset.fabTranslated){
         cardImg.classList.forEach((classC) => {
-          cardImg.dataset.fabTranslated = 'true';
           let cardImgValue = classC.split('_')[1];
+          cardImg.dataset.fabTranslated = 'true';
           resolveCors(IMG_FR_LIBRARY+cardImgValue + '.webp', 'feltTable', {stylesheet, classC, cardImgValue});
         });
       }
@@ -34,13 +34,13 @@ else if (location.hostname === 'talishar.net') {
       if (img.src.includes('cardimages') && ![
           'https://talishar.net/cardimages/Difficulties.webp',
           'https://talishar.net/cardimages/CardBack.webp'].includes(img.src) &&
-        !img.dataset.oldName) {
+        !img.dataset.fabTranslated) {
         let cardImgValue = img.src.split('https://talishar.net/cardimages/')[1];
-        img.dataset.oldName = 'https://talishar.net/cardimages/' + cardImgValue;
+        img.dataset.fabTranslated = 'https://talishar.net/cardimages/' + cardImgValue;
         img.src = 'https://d2wlb52bya4y8z.cloudfront.net/media/cards/large/FR_' + cardImgValue;
         img.addEventListener('load', () => {console.log('load');});
         img.addEventListener('error', () => {
-          img.src = img.dataset.oldName;
+          img.src = img.dataset.fabTranslated;
         });
       }
     });
@@ -49,7 +49,7 @@ else if (location.hostname === 'talishar.net') {
     newImgs.forEach((img) => {
       if (img.src.includes('Difficulties')) {
         console.log(img);
-        img.src = img.dataset.oldName;
+        img.src = img.dataset.fabTranslated;
       }
     });
   }
@@ -57,7 +57,7 @@ else if (location.hostname === 'talishar.net') {
   setInterval(() => {
     let images = document.querySelectorAll('img[src*="Difficulties"]');
     images.forEach(image => {
-      image.src = image.dataset.oldName;
+      image.src = image.dataset.fabTranslated;
     });
   }, 500);
 
